@@ -108,9 +108,6 @@ function mostrarError(error){
            if(document.querySelector(`#salario${i}`).value === ""){
                document.querySelector(`#salario${i}`).className = "error";
            }
-           /*if(!/^\d*$/.test(document.querySelector(`#familiar${i}`).value)){
-            document.querySelector(`#familiar${i}`).className = "error";
-           } */
         }
         document.querySelector("#mostrar-errores").className = "";
         document.querySelector("#error").textContent = error;
