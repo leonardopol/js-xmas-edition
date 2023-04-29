@@ -191,10 +191,4 @@ function resetear(){
         noHayFamiliaresCreados = true;
 }
 
-/*function limpiar(){
-
-    ocultarErrores();
-}*/
-
-//document.querySelector("#boton-limpiar").onclick = limpiar;
 document.querySelector("#boton-reset").onclick = resetear;
