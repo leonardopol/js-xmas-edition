@@ -83,7 +83,7 @@ function validarNombre(nombre){
  
   function redireccion(){
      console.log("redireccionando");
-     window.location.href = "file:///C:/Users/sistema/Downloads/r-argentinaPrograma/GitHub/clase-7/tarea-clase-7/wishlist.html";
+     window.location.href = "wishlist.html";
   }
  
   function manejarErrores(errores){
