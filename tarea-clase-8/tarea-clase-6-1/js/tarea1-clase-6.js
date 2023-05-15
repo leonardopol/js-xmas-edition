@@ -18,23 +18,25 @@ Punto bonus: si hay inputs vacíos, ignorarlos en el cálculo (no contarlos como
 
 
 let noHayFamiliaresCreados = true;
-document.querySelector("#boton-enviar").onclick = function(event){
-    
-    const $familiares = Number(document.querySelector("#cantidad-familiares").value);
 
-    const $cantidadFamiliares = validarCantidadFamiliares($familiares);
-        if($cantidadFamiliares !== 'El numero no puede tener decimales' && $cantidadFamiliares !== 'El campo no puede estar vacio'){
+function validarFormulario(event){    
+    
+    const $familiares = document.querySelector("#cantidad-familiares");
+    const familiares = Number($familiares.value);
+    
+    const cantidadFamiliares = validarCantidadFamiliares(familiares);
+        if(cantidadFamiliares !== 'El numero no puede tener decimales' && cantidadFamiliares !== 'El campo no puede estar vacio'){
             if(noHayFamiliaresCreados){
                 noHayFamiliaresCreados = false;
-                crearFamiliares($cantidadFamiliares);
+                crearFamiliares(cantidadFamiliares);
                 mostrarBotonCalcular();
             }
 
-        } else if($cantidadFamiliares === 'El numero no puede tener decimales'){
+        } else if(cantidadFamiliares === 'El numero no puede tener decimales'){
             let error = 'El numero no puede tener decimales';
             
             visibilizarErroresCantidadDeFamiliares(error);
-        } else if($cantidadFamiliares === 'El campo no puede estar vacio'){
+        } else if(cantidadFamiliares === 'El campo no puede estar vacio'){
             let error = 'El campo no puede estar vacio';
             
             visibilizarErroresCantidadDeFamiliares(error);
@@ -43,6 +45,8 @@ document.querySelector("#boton-enviar").onclick = function(event){
 }
 
 function crearFamiliares(numeroFamiliares){
+    ocultarErrores();
+    ocultarBotonEnviar();
 
     for(let i = 0; i < numeroFamiliares; i++){
 
@@ -72,22 +76,25 @@ function borrarFamiliares(){
 }
 
 function mostrarBotonCalcular(){
-    const $botonCalcular = document.querySelector("#boton-calcular").className = "";
+    const $botonCalcular = document.querySelector("#boton-calcular");
+    $botonCalcular.className = "";
 }
 
 function ocultarBotonCalcular(){
-    const $botonCalcular = document.querySelector('#boton-calcular').className = 'oculto';
+    const $botonCalcular = document.querySelector('#boton-calcular');
+    $botonCalcular.className = 'oculto';
 }
 
 document.querySelector("#boton-calcular").onclick = function(event){
     
-    const $numeroFamiliares = Number(document.querySelector("#cantidad-familiares").value);
-    cambiarClaseAfamiliar($numeroFamiliares);
+    const $numeroFamiliares = document.querySelector("#cantidad-familiares");
+    const numeroFamiliares = Number($numeroFamiliares.value);
+    cambiarClaseAfamiliar(numeroFamiliares);
 
-        if($numeroFamiliares > 0){
+        if(numeroFamiliares > 0){
             let edades = [];
             let contadorErrores = 0;
-            for(let j = 0; j < $numeroFamiliares; j++){        
+            for(let j = 0; j < numeroFamiliares; j++){        
                 edades[j] = Number(document.querySelector(`#familiar${j}`).value);
                 let validar = validarEdades(edades[j]);
                 if(validar === 'El numero no puede tener decimales' || validar === 'El campo no puede estar vacio'){
@@ -115,11 +122,12 @@ function calculos(edades){
 
 function mostrarEdad(tipo, valor){
 
-    const $resultados = document.querySelector(`#${tipo}-edad`).textContent = valor;
+    const $resultados = document.querySelector(`#${tipo}-edad`);
+    $resultados.textContent = valor;
 }
 
 function visibilizarResultados(){
-
+    ocultarBotonCalcular();
     document.querySelector("#mostrar-resultados").className = "";
 }
 
@@ -133,13 +141,13 @@ function visibilizarErroresCantidadDeFamiliares(error){
     document.querySelector("#cantidad-familiares").className = "error";
     document.querySelector("#mostrar-errores").className = "";
     document.querySelector("#error").textContent = error;
-    
 }
 
 function visibilizarErroresEdades(error){
-    const $numeroFamiliares = Number(document.querySelector("#cantidad-familiares").value);
+    const $numeroFamiliares = document.querySelector("#cantidad-familiares");
+    const numeroFamiliares = Number($numeroFamiliares.value);
     
-    for(let i = 0; i < $numeroFamiliares; i++){
+    for(let i = 0; i < numeroFamiliares; i++){
     
        if(document.querySelector(`#familiar${i}`).value === ""){
            document.querySelector(`#familiar${i}`).className = "error";
@@ -158,6 +166,10 @@ function ocultarErrores(){
     document.querySelector("#mostrar-errores").className = "oculto";
     document.querySelector("#error").textContent = "";
     document.querySelector("#cantidad-familiares").className = "";
+}
+
+function ocultarBotonEnviar(){
+    document.querySelector("#boton-enviar").className = "oculto";
 }
 
 function borrarIntegrantes(){
@@ -192,3 +204,7 @@ function resetear(){
 }
 
 document.querySelector("#boton-reset").onclick = resetear;
+
+const $form = document.querySelector('#form');
+$form.onsubmit = validarFormulario;
+

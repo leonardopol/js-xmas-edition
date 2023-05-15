@@ -9,17 +9,15 @@
     
 </head>
 <body>
-        <form name=formulario id="numero-familiares" class="visible">
+        <form name=formulario id="form" class="visible" novalidate>
             <label for="cantidad-familiares">Ingrese cantidad de familiares</label>
             <input type="number" placeholder="Ej..3" id="cantidad-familiares">
-            <button name="submit" id="boton-enviar">enviar</button>
+            
 
             <div id="crearFamiliares">
                 
             </div>
-            <div id="boton-calcular" class="oculto">
-                <button type="submit">Calcular</button>
-            </div>
+            
 
             <div id="mostrar-resultados" class="oculto">
                 <p>EL mayor es: <strong id="mayor-edad"></strong></p>
@@ -28,7 +26,13 @@
                 <button type="reset" id="boton-reset">resetear</button>
             </div>
             <div id="mostrar-errores" class="oculto">
-                <p id="error"></p>
+                <ul id="error"></ul>
+            </div>
+            <p>
+                <button name="submit" id="boton-enviar">enviar</button>
+            </p>
+            <div id="boton-calcular" class="oculto">
+                <button name="submit">Calcular</button>
             </div>
         </form>
     <script src='../tarea-clase-6-1/js/tarea1-clase-6-calculos.js'></script>
