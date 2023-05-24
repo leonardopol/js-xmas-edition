@@ -6,7 +6,7 @@ function probarValidarSalarios(){
     console.assert(
         validarSalarios(4) === 4,
         'Validar salarios fallo con un salario valido'
-    );
+    );   
 }
 
 probarValidarSalarios();
