@@ -1,10 +1,10 @@
 function calcularMayorSalarioAnual(){
     let mayor = 0;
     for(let i = 0; i < indice; i++){
-        let $salario = Number(document.querySelector(`#salario${i}`).value);
-        if($salario !== 0){
-            if($salario > mayor){
-                mayor = $salario;
+        let salario = Number(document.querySelector(`#salario${i}`).value);
+        if(salario !== 0){
+            if(salario > mayor){
+                mayor = salario;
             }
         }
     }
@@ -14,10 +14,10 @@ function calcularMayorSalarioAnual(){
 function calcularMenorSalarioAnual(){
     let menor = Infinity;
     for(let i = 0; i < indice; i++){
-        let $salario = Number(document.querySelector(`#salario${i}`).value);
-        if($salario !== 0){
-            if($salario < menor){
-                menor = $salario;
+        let salario = Number(document.querySelector(`#salario${i}`).value);
+        if(salario !== 0){
+            if(salario < menor){
+                menor = salario;
             }
         }
     }
@@ -27,9 +27,9 @@ function calcularMenorSalarioAnual(){
 function calcularSalarioPromedioAnual(){
     let suma = 0;
     for(let i = 0; i < indice; i++){
-        let $salario = Number(document.querySelector(`#salario${i}`).value);
-        if($salario !== 0){
-           suma += $salario;
+        let salario = Number(document.querySelector(`#salario${i}`).value);
+        if(salario !== 0){
+           suma += salario;
         }
     }
     return (suma / indice).toFixed(2);
